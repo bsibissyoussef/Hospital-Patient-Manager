@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.RoomController"
+      styleClass="main-content" spacing="16"
+      style="-fx-padding: 20;">
+
+    <HBox styleClass="top-header" alignment="CENTER_LEFT" spacing="16">
+        <Label text="🛏️ Gestion des Chambres" styleClass="page-title"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Label fx:id="labelStatus" text="Page Chambres" styleClass="status-label"/>
+    </HBox>
+
+    <HBox spacing="16">
+        <VBox styleClass="stat-card" alignment="CENTER" prefWidth="160" prefHeight="80">
+            <Label text="Total Chambres" styleClass="stat-label"/>
+            <Label fx:id="labelTotal" text="0" styleClass="stat-number"/>
+        </VBox>
+        <VBox styleClass="stat-card-green" alignment="CENTER" prefWidth="160" prefHeight="80">
+            <Label text="Disponibles" styleClass="stat-label"/>
+            <Label fx:id="labelAvailable" text="0" styleClass="stat-number-green"/>
+        </VBox>
+        <VBox styleClass="stat-card-red" alignment="CENTER" prefWidth="160" prefHeight="80">
+            <Label text="Occupées" styleClass="stat-label"/>
+            <Label fx:id="labelOccupied" text="0" styleClass="stat-number-red"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+
+        <!-- FORMULAIRE AVEC SCROLL -->
+        <ScrollPane fitToWidth="true" prefWidth="340"
+                    VBox.vgrow="ALWAYS"
+                    style="-fx-background-color: transparent;
+                           -fx-background: transparent;
+                           -fx-border-color: transparent;">
+            <VBox styleClass="form-card" prefWidth="320" spacing="12">
+
+                <Label text="🛏️ Nouvelle Chambre" styleClass="card-title"/>
+
+                <Label text="Numéro de chambre" styleClass="field-label"/>
+                <TextField fx:id="fieldRoomNumber"
+                           promptText="Ex: 101"
+                           styleClass="input-field"/>
+
+                <Label text="Type" styleClass="field-label"/>
+                <ComboBox fx:id="comboRoomType"
+                          promptText="Sélectionner le type"
+                          styleClass="combo-field"
+                          maxWidth="Infinity"/>
+
+                <Label text="Assigner un patient" styleClass="field-label"/>
+                <ComboBox fx:id="comboPatient"
+                          promptText="Sélectionner un patient"
+                          styleClass="combo-field"
+                          maxWidth="Infinity"/>
+
+                <VBox spacing="8" styleClass="button-group">
+                    <Button text="➕ Ajouter Chambre" onAction="#handleAddRoom"
+                            styleClass="btn-add" maxWidth="Infinity"/>
+                    <Button text="👤 Assigner Patient" onAction="#handleAssignPatient"
+                            styleClass="btn-update" maxWidth="Infinity"/>
+                    <Button text="🔓 Libérer Chambre" onAction="#handleReleaseRoom"
+                            styleClass="btn-search" maxWidth="Infinity"/>
+                    <Button text="🗑️ Supprimer" onAction="#handleDeleteRoom"
+                            styleClass="btn-delete" maxWidth="Infinity"/>
+                    <Button text="🔄 Effacer" onAction="#handleClearRoom"
+                            styleClass="btn-clear" maxWidth="Infinity"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+
+        <!-- TABLE -->
+        <VBox styleClass="table-card" HBox.hgrow="ALWAYS" spacing="12">
+            <Label text="📋 Liste des Chambres" styleClass="card-title"/>
+            <TableView fx:id="roomTable"
+                       VBox.vgrow="ALWAYS"
+                       styleClass="patient-table">
+                <columns>
+                    <TableColumn fx:id="colRoomNumber" text="Numéro" prefWidth="80"/>
+                    <TableColumn fx:id="colRoomType" text="Type" prefWidth="120"/>
+                    <TableColumn fx:id="colRoomStatus" text="Statut" prefWidth="120"/>
+                    <TableColumn fx:id="colRoomPatient"
+                                 text="Patient assigné" prefWidth="200"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune chambre trouvée."
+                           styleClass="table-placeholder"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+    </HBox>
+
+</VBox>

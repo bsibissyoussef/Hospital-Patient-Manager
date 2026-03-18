@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controllers.LoginController"
+           prefWidth="900" prefHeight="600"
+           style="-fx-background-color: #1A237E;">
+
+    <!-- BACKGROUND CIRCLES décoratifs -->
+    <StackPane style="-fx-background-color: transparent;">
+        <VBox alignment="CENTER" spacing="0">
+            <StackPane prefWidth="900" prefHeight="600"
+                       style="-fx-background-color: transparent;">
+
+                <!-- Cercle décoratif haut gauche -->
+                <StackPane prefWidth="300" prefHeight="300"
+                           style="-fx-background-color: #283593;
+                                  -fx-background-radius: 200;
+                                  -fx-opacity: 0.5;"
+                           StackPane.alignment="TOP_LEFT"
+                           translateX="-80" translateY="-80"/>
+
+                <!-- Cercle décoratif bas droite -->
+                <StackPane prefWidth="250" prefHeight="250"
+                           style="-fx-background-color: #0D47A1;
+                                  -fx-background-radius: 200;
+                                  -fx-opacity: 0.4;"
+                           StackPane.alignment="BOTTOM_RIGHT"
+                           translateX="80" translateY="80"/>
+
+            </StackPane>
+        </VBox>
+    </StackPane>
+
+    <!-- LOGIN CARD -->
+    <VBox fx:id="loginBox"
+          alignment="CENTER"
+          prefWidth="420"
+          style="-fx-background-color: white;
+                 -fx-background-radius: 20;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 30, 0, 0, 10);
+                 -fx-padding: 50 40 50 40;"
+          spacing="16"
+          maxWidth="420"
+          opacity="0">
+
+        <!-- LOGO -->
+        <Label text="🏥"
+               style="-fx-font-size: 56px;"/>
+
+        <!-- TITRE -->
+        <Label text="Hospital Patient Manager"
+               style="-fx-font-size: 20px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #1A237E;"/>
+
+        <Label text="Connectez-vous à votre espace"
+               style="-fx-font-size: 13px;
+                      -fx-text-fill: #90A4AE;"/>
+
+        <!-- SEPARATEUR -->
+        <StackPane prefHeight="1" prefWidth="340"
+                   style="-fx-background-color: #E0E0E0;"/>
+
+        <!-- CHAMP USERNAME -->
+        <VBox spacing="6">
+            <Label text="👤  Nom d'utilisateur"
+                   style="-fx-font-size: 12px;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #546E7A;"/>
+            <TextField fx:id="fieldUsername"
+                       promptText="Entrez votre nom d'utilisateur"
+                       style="-fx-background-color: #F5F7FA;
+                              -fx-border-color: #CFD8DC;
+                              -fx-border-radius: 8;
+                              -fx-background-radius: 8;
+                              -fx-padding: 12 16 12 16;
+                              -fx-font-size: 14px;"
+                       prefWidth="340"/>
+        </VBox>
+
+        <!-- CHAMP PASSWORD -->
+        <VBox spacing="6">
+            <Label text="🔒  Mot de passe"
+                   style="-fx-font-size: 12px;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #546E7A;"/>
+            <PasswordField fx:id="fieldPassword"
+                           promptText="Entrez votre mot de passe"
+                           style="-fx-background-color: #F5F7FA;
+                                  -fx-border-color: #CFD8DC;
+                                  -fx-border-radius: 8;
+                                  -fx-background-radius: 8;
+                                  -fx-padding: 12 16 12 16;
+                                  -fx-font-size: 14px;"
+                           prefWidth="340"/>
+        </VBox>
+
+        <!-- ERROR LABEL -->
+        <Label fx:id="labelError"
+               text=""
+               style="-fx-text-fill: #C62828;
+                      -fx-font-size: 13px;
+                      -fx-font-weight: bold;"
+               wrapText="true"
+               prefWidth="340"/>
+
+        <!-- BOUTON LOGIN -->
+        <Button text="🔐  Se connecter"
+                onAction="#handleLogin"
+                fx:id="btnLogin"
+                prefWidth="340"
+                style="-fx-background-color: #1A237E;
+                       -fx-text-fill: white;
+                       -fx-font-size: 15px;
+                       -fx-font-weight: bold;
+                       -fx-background-radius: 10;
+                       -fx-padding: 14 0 14 0;
+                       -fx-cursor: hand;"/>
+
+        <!-- BOUTON EFFACER -->
+        <Button text="🔄  Effacer"
+                onAction="#handleClear"
+                prefWidth="340"
+                style="-fx-background-color: #F5F7FA;
+                       -fx-text-fill: #546E7A;
+                       -fx-font-size: 13px;
+                       -fx-font-weight: bold;
+                       -fx-background-radius: 10;
+                       -fx-padding: 10 0 10 0;
+                       -fx-cursor: hand;
+                       -fx-border-color: #CFD8DC;
+                       -fx-border-radius: 10;"/>
+
+
+    </VBox>
+
+</StackPane>

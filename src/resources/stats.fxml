@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.StatsController"
+            fitToWidth="true"
+            style="-fx-background-color: #F0F4F8;
+                   -fx-background: #F0F4F8;">
+
+    <VBox styleClass="main-content" spacing="16" style="-fx-padding: 20;">
+
+        <!-- EN-TETE -->
+        <HBox styleClass="top-header" alignment="CENTER_LEFT" spacing="16">
+            <Label text="📊 Statistiques" styleClass="page-title"/>
+            <HBox HBox.hgrow="ALWAYS"/>
+            <Button text="🔄 Actualiser"
+                    onAction="#handleRefresh"
+                    styleClass="btn-search"/>
+        </HBox>
+
+        <!-- STAT CARDS -->
+        <HBox spacing="16">
+            <VBox styleClass="stat-card" alignment="CENTER"
+                  prefWidth="160" prefHeight="90">
+                <Label text="👥 Patients" styleClass="stat-label"/>
+                <Label fx:id="labelTotalPatients" text="0" styleClass="stat-number"/>
+                <Label text="Total" styleClass="stat-sublabel"/>
+            </VBox>
+            <VBox styleClass="stat-card" alignment="CENTER"
+                  prefWidth="160" prefHeight="90">
+                <Label text="👨‍⚕️ Médecins" styleClass="stat-label"/>
+                <Label fx:id="labelTotalDoctors" text="0" styleClass="stat-number"/>
+                <Label text="Total" styleClass="stat-sublabel"/>
+            </VBox>
+            <VBox styleClass="stat-card" alignment="CENTER"
+                  prefWidth="160" prefHeight="90">
+                <Label text="📅 Rendez-vous" styleClass="stat-label"/>
+                <Label fx:id="labelTotalAppointments" text="0" styleClass="stat-number"/>
+                <Label text="Total" styleClass="stat-sublabel"/>
+            </VBox>
+            <VBox styleClass="stat-card-green" alignment="CENTER"
+                  prefWidth="160" prefHeight="90">
+                <Label text="✅ Disponibles" styleClass="stat-label"/>
+                <Label fx:id="labelAvailableRooms" text="0" styleClass="stat-number-green"/>
+                <Label text="Chambres" styleClass="stat-sublabel"/>
+            </VBox>
+            <VBox styleClass="stat-card-red" alignment="CENTER"
+                  prefWidth="160" prefHeight="90">
+                <Label text="🔴 Occupées" styleClass="stat-label"/>
+                <Label fx:id="labelOccupiedRooms" text="0" styleClass="stat-number-red"/>
+                <Label text="Chambres" styleClass="stat-sublabel"/>
+            </VBox>
+            <VBox styleClass="stat-card" alignment="CENTER"
+                  prefWidth="160" prefHeight="90">
+                <Label text="🛏️ Chambres" styleClass="stat-label"/>
+                <Label fx:id="labelTotalRooms" text="0" styleClass="stat-number"/>
+                <Label text="Total" styleClass="stat-sublabel"/>
+            </VBox>
+        </HBox>
+
+        <!-- CHARTS ROW -->
+        <HBox spacing="16">
+
+            <!-- PIE CHART — Chambres -->
+            <VBox styleClass="form-card" HBox.hgrow="ALWAYS" spacing="8">
+                <Label text="🥧 Occupation des Chambres"
+                       styleClass="card-title"/>
+                <PieChart fx:id="pieChart"
+                          prefHeight="280"
+                          animated="true"
+                          labelsVisible="true"/>
+            </VBox>
+
+            <!-- BAR CHART — Vue générale -->
+            <VBox styleClass="form-card" HBox.hgrow="ALWAYS" spacing="8">
+                <Label text="📊 Vue Générale"
+                       styleClass="card-title"/>
+                <BarChart fx:id="barChart"
+                          prefHeight="280"
+                          animated="true">
+                    <xAxis>
+                        <CategoryAxis label="Catégorie"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Nombre"/>
+                    </yAxis>
+                </BarChart>
+            </VBox>
+
+        </HBox>
+
+        <!-- TAUX D'OCCUPATION -->
+        <VBox styleClass="form-card" spacing="12">
+            <Label text="📈 Taux d'Occupation des Chambres"
+                   styleClass="card-title"/>
+            <HBox spacing="16" alignment="CENTER_LEFT">
+                <Label text="Taux : " styleClass="field-label"/>
+                <Label fx:id="labelOccupancyRate" text="0%"
+                       style="-fx-font-size: 28px; -fx-font-weight: bold;
+                              -fx-text-fill: #1A237E;"/>
+            </HBox>
+            <HBox spacing="4" alignment="CENTER_LEFT">
+                <Label text="Occupation : " styleClass="field-label"/>
+                <Label fx:id="labelOccupancyBar" text="░░░░░░░░░░"
+                       style="-fx-font-size: 22px; -fx-text-fill: #028090;
+                              -fx-font-family: 'Courier New';"/>
+            </HBox>
+            <Label text="Chaque bloc █ représente 10% d'occupation"
+                   style="-fx-text-fill: #90A4AE; -fx-font-size: 11px;
+                          -fx-font-style: italic;"/>
+        </VBox>
+
+    </VBox>
+
+</ScrollPane>

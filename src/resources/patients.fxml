@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      styleClass="main-content" spacing="16"
+      style="-fx-padding: 20;">
+
+    <!-- EN-TETE -->
+    <HBox styleClass="top-header" alignment="CENTER_LEFT" spacing="16">
+        <Label text="👥 Gestion des Patients" styleClass="page-title"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Label fx:id="labelStatus" text="Bienvenue" styleClass="status-label"/>
+    </HBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+
+        <!-- FORMULAIRE -->
+        <VBox styleClass="form-card" prefWidth="320" spacing="12">
+
+            <Label text="➕ Nouveau Patient" styleClass="card-title"/>
+
+            <Label text="Nom complet" styleClass="field-label"/>
+            <TextField fx:id="fieldName"
+                       promptText="Ex: Ahmed Benali"
+                       styleClass="input-field"/>
+
+            <Label text="Âge" styleClass="field-label"/>
+            <TextField fx:id="fieldAge"
+                       promptText="Ex: 35"
+                       styleClass="input-field"/>
+
+            <Label text="Maladie" styleClass="field-label"/>
+            <TextField fx:id="fieldDisease"
+                       promptText="Ex: Hypertension"
+                       styleClass="input-field"/>
+
+            <Label text="Chambre assignée" styleClass="field-label"/>
+            <ComboBox fx:id="comboRooms"
+                      promptText="Sélectionner une chambre"
+                      styleClass="combo-field"
+                      maxWidth="Infinity"/>
+
+            <VBox spacing="8" styleClass="button-group">
+                <Button text="➕ Ajouter"
+                        onAction="#handleAdd"
+                        styleClass="btn-add"
+                        maxWidth="Infinity"/>
+                <Button text="✏️ Modifier"
+                        onAction="#handleUpdate"
+                        styleClass="btn-update"
+                        maxWidth="Infinity"/>
+                <Button text="🗑️ Supprimer"
+                        onAction="#handleDelete"
+                        styleClass="btn-delete"
+                        maxWidth="Infinity"/>
+                <Button text="🔄 Effacer"
+                        onAction="#handleClear"
+                        styleClass="btn-clear"
+                        maxWidth="Infinity"/>
+            </VBox>
+
+        </VBox>
+
+        <!-- TABLE + RECHERCHE -->
+        <VBox styleClass="table-card" HBox.hgrow="ALWAYS" spacing="12">
+
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="🔍" styleClass="search-icon"/>
+                <TextField fx:id="fieldSearch"
+                           promptText="Rechercher par nom ou maladie..."
+                           styleClass="search-field"
+                           HBox.hgrow="ALWAYS"/>
+                <Button text="Rechercher"
+                        onAction="#handleSearch"
+                        styleClass="btn-search"/>
+            </HBox>
+
+            <TableView fx:id="patientTable"
+                       VBox.vgrow="ALWAYS"
+                       styleClass="patient-table">
+                <columns>
+                    <TableColumn fx:id="colId"
+                                 text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="colName"
+                                 text="Nom" prefWidth="160"/>
+                    <TableColumn fx:id="colAge"
+                                 text="Âge" prefWidth="60"/>
+                    <TableColumn fx:id="colDisease"
+                                 text="Maladie" prefWidth="180"/>
+                    <TableColumn fx:id="colRoom"
+                                 text="Chambre" prefWidth="150"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucun patient trouvé."
+                           styleClass="table-placeholder"/>
+                </placeholder>
+            </TableView>
+
+        </VBox>
+
+    </HBox>
+
+</VBox>
