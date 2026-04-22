@@ -1,53 +1,34 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<build>
+    <plugins>
 
-    <modelVersion>4.0.0</modelVersion>
+        <!-- Compile Java -->
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+        </plugin>
 
-    <groupId>com.hospital</groupId>
-    <artifactId>hospital-manager</artifactId>
-    <version>1.0</version>
+        <!-- ✅ ADD THIS -->
+        <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>MainApp</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
 
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <javafx.version>21</javafx.version>
-    </properties>
-
-    <dependencies>
         <!-- JavaFX -->
-        <dependency>
+        <plugin>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <configuration>
+                <mainClass>MainApp</mainClass>
+            </configuration>
+        </plugin>
 
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <!-- Compile Java -->
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
-            </plugin>
-
-            <!-- Run JavaFX -->
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <configuration>
-                    <mainClass>MainApp</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-</project>
+    </plugins>
+</build>
